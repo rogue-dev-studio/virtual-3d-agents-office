@@ -1,8 +1,10 @@
 # Release Notes — Virtual 3D Agent Office v1.0.0
 
-**Release date:** 2026-10-19 · **Channel:** Local Development (not deployed)
+**Release date:** 2026-10-19 · **Channel:** GitHub Pages (public)
+**Live:** https://rogue-dev-studio.github.io/virtual-3d-agents-office/
+**Repo:** https://github.com/rogue-dev-studio/virtual-3d-agents-office
 **Author:** Rogue Development (`@rogue-dev-studio`) — AI Agents Rogue v1.4.0
-**License:** MIT · **Build:** Vite production bundle, `dist/`
+**License:** MIT · **Build:** Vite production bundle, `dist/` (built by CI, not committed)
 
 ---
 
@@ -50,12 +52,12 @@ QA found and we fixed (details in `docs/qa/QA-REPORT.md`):
 - DOM fallback path implemented but not covered by an automated test.
 - Small unreachable pockets behind some upstream furniture (98.8 % / 96.0 % walkable).
 - 6 open `npm audit` advisories in the dev/build tree (none shipped).
-- Nothing is deployed.
+- Static GitHub Pages hosting only — no API origin, so all state lives in the browser session.
 
 ## Upgrade / install
 
 ```bash
-git clone <this project>          # or copy the folder
+git clone https://github.com/rogue-dev-studio/virtual-3d-agents-office.git
 cd virtual-3d-agents-office
 npm install
 npm run build && npm run preview
@@ -71,3 +73,6 @@ No migration steps — first release.
 | `npm test` | ✅ 10/10 |
 | `npm run e2e` | ✅ 15/15 (desktop, tablet, mobile) |
 | Console errors | ✅ none on load |
+| CI (`npm ci` + `npm test` + `npm run build`) | ✅ `39232839029` |
+| GitHub Pages deploy | ✅ build → artifact → `deploy-pages` green |
+| Live site check (headless Chromium) | ✅ 10/10 — 9 agents, 36 rooms, 164 draw calls, 0 console errors, 0 failed requests |

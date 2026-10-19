@@ -11,6 +11,9 @@ floors, take breaks, and report what they are working on through an in-world HUD
 **Author:** [Rogue Development](https://github.com/rogue-dev-studio) (`@rogue-dev-studio`) ·
 **Product:** AI Agents Rogue v1.4.0 · **License:** MIT (see `LICENSE`, `NOTICE`)
 
+**Live demo:** https://rogue-dev-studio.github.io/virtual-3d-agents-office/
+**Source:** https://github.com/rogue-dev-studio/virtual-3d-agents-office
+
 ---
 
 ## Quick start
@@ -129,7 +132,23 @@ are placed. `?quality=` and `?seed=` are also handy for reproducible tests.
 - Small (< ~2 m²) pockets behind upstream furniture in four rooms are unreachable by agents
   (98.8 % / 96.0 % of each floor is reachable); seats and doorways are carved and remain reachable.
 - English UI copy; the vendored dataset keeps its own room ids internally.
-- Not deployed anywhere — deployment needs explicit approval.
+- **Static hosting only** — GitHub Pages serves build output; there is no API origin, so all
+  state lives in the browser session.
+
+## Deployment
+
+The demo runs on **GitHub Pages**, deployed from `main` by
+`.github/workflows/deploy.yml`:
+
+1. `npm ci` → `npm test` (the deploy is blocked if a unit test fails)
+2. `npm run build` → `dist/`
+3. `actions/upload-pages-artifact` + `actions/deploy-pages`
+
+`dist/` is **gitignored on purpose** — build output never enters git history, and the site is
+always rebuilt from source. `vite.config.js` sets `base: "./"` so the bundle resolves assets
+relative to the page and works unchanged under the `/virtual-3d-agents-office/` subpath.
+
+Re-deploy by pushing to `main`, or manually: `gh workflow run deploy.yml`.
 
 ## Documentation
 
