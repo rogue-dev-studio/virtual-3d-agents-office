@@ -1,0 +1,37 @@
+Virtual 3D Agent Office
+=======================
+
+Author / Copyright holder:
+  Rogue Development (Rogue Dev Studio)
+  https://github.com/rogue-dev-studio
+  GitHub: @rogue-dev-studio
+
+Product: AI Agents Rogue v1.4.0
+Licensed under the MIT License, see LICENSE.
+
+Official source:
+  Publish and verify against the author's GitHub organization.
+  Forks or copies without this attribution are unofficial.
+
+Third-party assets
+------------------
+Models and the office dataset are vendored, unmodified, from the upstream
+`kantor-rpg` project:
+  kantor-rpg, Copyright (c) 2026 Budi Prabhawa, MIT License.
+  Full upstream license text: public/assets/vendor/kantor-rpg/LICENSE
+                               public/assets/vendor/kantor-rpg/NOTICE
+
+Tech props and the HDRI are from Poly Haven, dedicated to the public domain
+under CC0 1.0 Universal (attribution recorded for traceability):
+  https://polyhaven.com/license
+
+Third-party libraries
+---------------------
+  three.js        MIT           https://threejs.org/
+  Vite            MIT           https://vitejs.dev/
+  gltf-transform  MIT           https://gltf-transform.dev/
+  Vitest          MIT           https://vitest.dev/
+  Playwright      Apache-2.0    https://playwright.dev/
+
+Every asset with its author, source URL and license is listed in
+docs/assets/ASSET-REGISTER.md and in the in-app "Credits & Asset Licenses" modal.

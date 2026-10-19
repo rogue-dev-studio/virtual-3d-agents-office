@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Virtual 3D Agent Office — Realistic AI Workspace</title>
+    <meta
+      name="description"
+      content="An explorable 3D technology office where AI agents work, move between rooms and report their status."
+    />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f1720'/%3E%3Cpath d='M8 21V11l8 5 8-5v10' stroke='%233ddc97' stroke-width='2.4' fill='none' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="scene" aria-label="3D office scene" role="img"></canvas>
+
+      <!-- Loading / fatal error -->
+      <div id="loading" class="overlay" role="status" aria-live="polite">
+        <div class="loading-card">
+          <h1>Virtual 3D Agent Office</h1>
+          <p id="loading-label">Loading office…</p>
+          <div class="progress"><div id="loading-bar"></div></div>
+          <p class="loading-note" id="loading-note">Simulated agent activity · seed 20261001</p>
+          <button id="loading-retry" class="btn hidden" type="button">Retry</button>
+        </div>
+      </div>
+
+      <!-- WebGL fallback: still useful without 3D -->
+      <div id="fallback" class="overlay hidden">
+        <div class="fallback-card">
+          <h1>Agent directory</h1>
+          <p id="fallback-reason"></p>
+          <p class="muted">
+            This device cannot render the 3D office, so here is the live directory and activity feed
+            instead. Everything below comes from the same simulated agent state.
+          </p>
+          <div id="fallback-stats" class="fallback-stats"></div>
+          <div id="fallback-agents" class="fallback-agents"></div>
+          <div id="fallback-feed" class="fallback-feed"></div>
+          <p class="muted">
+            Asset credits and licenses: <span id="fallback-credits"></span>
+          </p>
+        </div>
+      </div>
+
+      <header id="topbar" class="hud" aria-label="Office command bar">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-text">
+            <strong>Virtual 3D Agent Office</strong>
+            <em>Realistic AI Workspace</em>
+          </span>
+        </div>
+        <div id="stats" class="stats" aria-label="Live office statistics"></div>
+        <div class="actions">
+          <div class="seg" role="group" aria-label="Floor">
+            <button class="seg-btn" data-floor="L1" type="button">L1</button>
+            <button class="seg-btn" data-floor="L2" type="button">L2</button>
+            <button class="seg-btn" data-floor="all" type="button">Both</button>
+          </div>
+          <label class="field">
+            <span>Quality</span>
+            <select id="quality" aria-label="Graphics quality">
+              <option value="auto">Auto</option>
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+          </label>
+          <button id="btn-overview" class="btn" type="button" title="Office overview (R)">Overview</button>
+          <button id="btn-credits" class="btn" type="button">Credits</button>
+          <button id="btn-help" class="btn" type="button" title="Controls (H)">?</button>
+          <button id="btn-fullscreen" class="btn" type="button" title="Fullscreen">⛶</button>
+        </div>
+        <div id="asset-issues" class="asset-issues hidden" role="status"></div>
+      </header>
+
+      <aside id="dashboard" class="hud panel" aria-label="Office dashboard">
+        <button class="panel-toggle" type="button" aria-expanded="true" title="Collapse dashboard">
+          <span class="panel-toggle-label">Dashboard</span>
+        </button>
+        <div class="panel-body">
+          <div id="stats-detail" class="stat-grid"></div>
+          <section>
+            <h2>Needs attention</h2>
+            <ul id="attention" class="list"></ul>
+          </section>
+          <section>
+            <h2>Divisions</h2>
+            <ul id="divisions" class="list"></ul>
+          </section>
+          <section>
+            <h2>Agents</h2>
+            <ul id="roster" class="list roster"></ul>
+          </section>
+          <section>
+            <h2>Activity</h2>
+            <ul id="feed" class="feed"></ul>
+          </section>
+        </div>
+      </aside>
+
+      <aside id="detail" class="hud panel detail hidden" aria-label="Detail panel">
+        <button id="detail-close" class="panel-close" type="button" aria-label="Close detail panel">×</button>
+        <div id="detail-body" class="panel-body"></div>
+      </aside>
+
+      <div id="hint" class="hint">
+        <span>Drag to orbit · scroll to zoom · click an agent, desk or room · <kbd>H</kbd> for controls</span>
+        <button id="hint-close" type="button" aria-label="Dismiss hint">×</button>
+      </div>
+
+      <!-- Credits -->
+      <div id="credits" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="credits-title">
+        <div class="modal-card">
+          <header class="modal-head">
+            <h1 id="credits-title">Credits &amp; Asset Licenses</h1>
+            <button id="credits-close" class="btn" type="button" aria-label="Close credits">Close</button>
+          </header>
+          <p class="muted" id="credits-summary"></p>
+          <div id="credits-body" class="modal-body"></div>
+        </div>
+      </div>
+
+      <!-- Help -->
+      <div id="help" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="help-title">
+        <div class="modal-card">
+          <header class="modal-head">
+            <h1 id="help-title">Controls &amp; what you are looking at</h1>
+            <button id="help-close" class="btn" type="button" aria-label="Close help">Close</button>
+          </header>
+          <div id="help-body" class="modal-body"></div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

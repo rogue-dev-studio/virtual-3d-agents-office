@@ -1,0 +1,25 @@
+id: virtual-3d-agents-office
+name: Virtual 3D Agent Office — Realistic AI Workspace
+team: ""
+version: 1.0.0
+status: local-development
+created: 2026-10-19
+
+# Stack
+stack:
+  backend: ""
+  frontend: "Vite 7 + three.js 0.186 (JavaScript ES modules)"
+  database: ""
+  mobile: "responsive web (no native app)"
+
+# Path dokumentasi relatif ke folder project ini
+docs_root: docs
+# Deliverable non-doc (kode/gambar/3d/media) relatif ke folder project ini
+artifacts_root: ""
+
+# Catatan: kode aplikasi produksi berada di root project (src/, public/, tests/, dist/),
+# sesuai izin template ("kode aplikasi produksi besar boleh di root repo").
+notes:
+  - "Agent activity is a seeded front-end simulation; no backend or LLM is called."
+  - "Vendored MIT assets (kantor-rpg) + CC0 Poly Haven props; see docs/assets/ASSET-REGISTER.md."
+  - "Not deployed anywhere; deployment requires explicit approval."

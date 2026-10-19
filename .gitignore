@@ -1,0 +1,12 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+
+# raw third-party downloads (re-create with `npm run assets:fetch`)
+.cache/
+
+# test artifacts
+test-results/
+playwright-report/
